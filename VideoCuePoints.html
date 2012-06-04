@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>VideoCuePoints Test</title>
+	</head>
+	<body>
+		<!-- Add a video -->
+		<video src="VideoCuePoints.mp4" autoplay="autoplay" controls="controls" id="videosrc"></video>
+
+		<!-- Import VideoCuePoints class -->
+		<script type="text/javascript" charset="utf-8" src="VideoCuePoints.class.js"></script>
+
+		<script type="text/javascript">
+
+			// Get the video dom element
+			var video = document.getElementById ('videosrc');
+
+			// Pass that to the constructor of VideoCuePoints
+			var videoCuePoints = new VideoCuePoints ( video );
+
+			// Add any cuepoints. Order doesn't matter. They'll sort.
+			videoCuePoints.addCuePoint ( 2, 'Testing 1');
+			videoCuePoints.addCuePoint ( 5, 'Testing 2');
+			videoCuePoints.addCuePoint ( 6, 'Testing 3');
+			videoCuePoints.addCuePoint ( 3, 'Testing 4');
+			videoCuePoints.addCuePoint ( 3.1, 'Testing 5');
+			videoCuePoints.addCuePoint ( 3.2, 'Testing 6');
+			videoCuePoints.addCuePoint ( 3.3, 'Testing 7');
+			videoCuePoints.addCuePoint ( 3.4, 'Testing 8');
+
+			// Add an event listener callback
+			videoCuePoints.onCuePoint( onCuePoint );
+
+			// Handle the cuepoints 
+			function onCuePoint ( name, time, type )
+			{
+				console.log ( 'CuePoint:', name, ' time:', time, ' type:', type );
+			}
+		</script>
+	</body>
+</html>
