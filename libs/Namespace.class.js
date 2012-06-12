@@ -1,7 +1,7 @@
 function Namespace (namespaceString) {
-	var parts = namespaceString.split('.'),
-	parent = window,
-	currentPart = '';
+	var parts = namespaceString.split('.');
+	var parent = (function(){ return this || (1,eval)('this') })();
+	var currentPart = '';
 
 	for(var i = 0, length = parts.length; i < length; i++) {
 		currentPart = parts[i];
