@@ -7,9 +7,15 @@
 		<video src="VideoCuePoints.mp4" autoplay="autoplay" controls="controls" id="videosrc"></video>
 
 		<!-- Import VideoCuePoints class -->
-		<script type="text/javascript" charset="utf-8" src="VideoCuePoints.class.js"></script>
+		<script type="text/javascript" charset="utf-8" src="libs/my.class.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="com/bluediesel/namespace/Namespace.class.js"></script>
+		<script type="text/javascript" charset="utf-8" src="com/bluediesel/events/EventDispatcher.class.js"></script>
+		<script type="text/javascript" charset="utf-8" src="com/bluediesel/video/CuePoint.class.js"></script>
+		<script type="text/javascript" charset="utf-8" src="com/bluediesel/video/VideoCuePoints.class.js"></script>
 
 		<script type="text/javascript">
+			
+			Namespace.import ( this, 'com.bluediesel.video.*' );
 
 			// Get the video dom element
 			var video = document.getElementById ('videosrc');
@@ -28,11 +34,14 @@
 			videoCuePoints.addCuePoint ( 3.4, 'Testing 8');
 
 			// Add an event listener callback
-			videoCuePoints.onCuePoint( onCuePoint );
+			videoCuePoints.addEventListener ( VideoCuePoints.CUE_POINT_EVENT, onCuePoint );
 
 			// Handle the cuepoints 
-			function onCuePoint ( name, time, type )
+			function onCuePoint ( o )
 			{
+				var name = o.name,
+				time = o.time,
+				type = o.type;
 				console.log ( 'CuePoint:', name, ' time:', time, ' type:', type );
 			}
 		</script>
