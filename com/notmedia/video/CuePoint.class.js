@@ -42,7 +42,7 @@
 
 	});
 
-	var namespace = new Namespace ( 'com.bluediesel.video' );
+	var namespace = new Namespace ( 'com.notmedia.video' );
 	namespace.CuePoint = CuePoint;
 
 })();

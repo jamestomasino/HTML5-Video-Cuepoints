@@ -40,7 +40,7 @@
 
 	});
 
-	var namespace = new Namespace ( 'com.bluediesel.events' );
+	var namespace = new Namespace ( 'com.notmedia.events' );
 	namespace.EventDispatcher = EventDispatcher;
 
 })();

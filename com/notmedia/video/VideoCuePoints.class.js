@@ -1,6 +1,6 @@
 (function() {
 
-	var VideoCuePoints = my.Class( com.bluediesel.events.EventDispatcher, {
+	var VideoCuePoints = my.Class( com.notmedia.events.EventDispatcher, {
 
 		STATIC: {
 			CUE_POINT_EVENT: 'VideoCuePoints_CUE_POINT_EVENT',
@@ -9,7 +9,7 @@
 
 		constructor: function( video ) {
 
-			Namespace.import ( this, 'com.bluediesel.video.CuePoint' );
+			Namespace.import ( this, 'com.notmedia.video.CuePoint' );
 
 			this.video         = null;  // Video Object
 			this.time          = -1;    // Number
@@ -145,7 +145,7 @@
 
 	});
 
-	var namespace = new Namespace ( 'com.bluediesel.video' );
+	var namespace = new Namespace ( 'com.notmedia.video' );
 	namespace.VideoCuePoints = VideoCuePoints;
 
 })();
