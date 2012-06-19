@@ -1,6 +1,6 @@
 (function() {
 
-	var VideoCuePoints = my.Class( com.notmedia.events.EventDispatcher, {
+	var VideoCuePoints = my.Class( org.tomasino.events.EventDispatcher, {
 
 		STATIC: {
 			CUE_POINT_EVENT: 'VideoCuePoints_CUE_POINT_EVENT',
@@ -9,7 +9,13 @@
 
 		constructor: function( video ) {
 
-			Namespace.import ( this, 'com.notmedia.video.CuePoint' );
+			Namespace.import ( this, 'org.tomasino.utils.Delegate' );
+			Namespace.import ( this, 'org.tomasino.video.CuePoint' );
+
+			// Store references for removeEventListeners later
+			this._onTimeUpdateDelegate = this.Delegate.createDelegate ( this, this._onTimeUpdate );
+			this._onSeekingDelegate    = this.Delegate.createDelegate ( this, this._onSeeking );
+			this._onSeekedDelegate     = this.Delegate.createDelegate ( this, this._onSeeked );
 
 			this.video         = null;  // Video Object
 			this.time          = -1;    // Number
@@ -22,9 +28,9 @@
 
 		clearVideo: function () {
 			if (this.video) {
-				this.video.removeEventListener ( "timeupdate" );
-				this.video.removeEventListener ( "seeking" );
-				this.video.removeEventListener ( "seeked" );
+				this.video.removeEventListener ( "timeupdate", this._onTimeUpdateDelegate  );
+				this.video.removeEventListener ( "seeking", this._onSeekingDelegate );
+				this.video.removeEventListener ( "seeked", this._onSeekedDelegate );
 				this.video = null;
 				this.time = -1;
 			}
@@ -34,9 +40,9 @@
 		setVideo: function ( val ) {
 			this.clearVideo();
 			this.video = val;
-			this.video.addEventListener ( "timeupdate", this._delegate ( this, this._onTimeUpdate ) );
-			this.video.addEventListener ( "seeking", this._delegate ( this, this._onSeeking ) );
-			this.video.addEventListener ( "seeked", this._delegate ( this, this._onSeeked ) );
+			this.video.addEventListener ( "timeupdate", this._onTimeUpdateDelegate );
+			this.video.addEventListener ( "seeking", this._onSeekingDelegate );
+			this.video.addEventListener ( "seeked", this._onSeekedDelegate );
 		},
 
 		addCuePoint: function ( time, label ) {
@@ -50,7 +56,7 @@
 				}
 			}
 
-			var cuePoint = new CuePoint ( time, label, VideoCuePoints.CUE_POINT_TYPE, prevCuePoint );
+			var cuePoint = new this.CuePoint ( time, label, VideoCuePoints.CUE_POINT_TYPE, prevCuePoint );
 
 			if ( prevCuePoint == null )
 			{
@@ -145,7 +151,7 @@
 
 	});
 
-	var namespace = new Namespace ( 'com.notmedia.video' );
+	var namespace = new Namespace ( 'org.tomasino.video' );
 	namespace.VideoCuePoints = VideoCuePoints;
 
 })();

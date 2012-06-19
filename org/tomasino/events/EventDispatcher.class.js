@@ -47,7 +47,7 @@
 
 	});
 
-	var namespace = new Namespace ( 'com.notmedia.events' );
+	var namespace = new Namespace ( 'org.tomasino.events' );
 	namespace.EventDispatcher = EventDispatcher;
 
 })();

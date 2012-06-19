@@ -32,7 +32,6 @@
 			this.name = null;
 			this.time = null;
 			this.type = null;
-			this = null;
 		},
 
 		toString: function () {
@@ -42,7 +41,7 @@
 
 	});
 
-	var namespace = new Namespace ( 'com.notmedia.video' );
+	var namespace = new Namespace ( 'org.tomasino.video' );
 	namespace.CuePoint = CuePoint;
 
 })();
