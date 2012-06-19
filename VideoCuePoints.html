@@ -9,14 +9,11 @@
 		<!-- Import VideoCuePoints class -->
 		<script type="text/javascript" charset="utf-8" src="libs/my.class.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="libs/Namespace.class.js"></script>
-		<script type="text/javascript" charset="utf-8" src="org/tomasino/utils/Delegate.class.js"></script>
-		<script type="text/javascript" charset="utf-8" src="org/tomasino/events/EventDispatcher.class.js"></script>
-		<script type="text/javascript" charset="utf-8" src="org/tomasino/video/CuePoint.class.js"></script>
-		<script type="text/javascript" charset="utf-8" src="org/tomasino/video/VideoCuePoints.class.js"></script>
 
 		<script type="text/javascript">
 
 			// Shown as example. Generally we don't want to clutter the global namespace
+			Namespace.import ( this, 'org.tomasino.events.EventDispatcher' );
 			Namespace.import ( this, 'org.tomasino.video.VideoCuePoints' );
 
 			// Get the video dom element
